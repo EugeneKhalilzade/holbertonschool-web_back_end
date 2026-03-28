@@ -25,3 +25,4 @@ msgstr ""
 #: templates/3-index.html:7
 msgid "home_header"
 msgstr ""
+
