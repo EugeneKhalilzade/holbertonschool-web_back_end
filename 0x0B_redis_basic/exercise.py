@@ -63,7 +63,9 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+    def get(
+        self, key: str, fn: Optional[Callable] = None
+    ) -> Union[str, bytes, int, float]:
         """Retrieve a value and optionally transform it with fn."""
         data = self._redis.get(key)
         return fn(data) if fn else data
@@ -75,4 +77,3 @@ class Cache:
     def get_int(self, key: str) -> int:
         """Get a Redis value converted to int."""
         return self.get(key, int)
-    
