@@ -75,3 +75,4 @@ class Cache:
     def get_int(self, key: str) -> int:
         """Get a Redis value converted to int."""
         return self.get(key, int)
+    
