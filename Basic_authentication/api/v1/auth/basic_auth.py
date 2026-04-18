@@ -16,7 +16,7 @@ class BasicAuth(Auth):
         ''' def extract base64 authorization header '''
         if authorization_header is None:
             return None
-        if type(authorization_header) != str:
+        if not isinstance(authorization_header, str):
             return None
         if authorization_header.startswith("Basic "):
             return "".join(authorization_header.split(" ")[1:])
@@ -24,8 +24,8 @@ class BasicAuth(Auth):
     def decode_base64_authorization_header(
             self, base64_authorization_header: str) -> str:
         ''' def decode base 64 authorization '''
-        if base64_authorization_header and type(
-                base64_authorization_header) == str:
+        if base64_authorization_header and isinstance(
+                base64_authorization_header, str):
             try:
                 x = base64_authorization_header.encode('utf-8')
                 base = base64.b64decode(x)
@@ -37,7 +37,7 @@ class BasicAuth(Auth):
             self, decoded_base64_authorization_header: str) -> (str, str):
         ''' return the user mail and the password '''
         c = decoded_base64_authorization_header
-        if c and type(c) == str and ":" in c:
+        if c and isinstance(c, str) and ":" in c:
             mail = c.split(':')[0]
             password = "".join(c.split(':', 1)[1:])
             return mail, password
